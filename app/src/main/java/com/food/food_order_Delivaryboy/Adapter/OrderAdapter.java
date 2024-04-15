@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -118,17 +119,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 String zoneId=orderList.get(position).getZone_id();
                 String paymentType=orderList.get(position).getPayment_type();
                 String vendorId=orderList.get(position).getVendor();
+                String cash_order_rate=orderList.get(position).getCash_order_rate();
                 Double allTotal= Double.valueOf(orderList.get(position).getGrand_totals());
 
-                if(LoginTypeActivity.isDeliveryBoy)
-                {
+//                if(LoginTypeActivity.isDeliveryBoy)
+//                {
                     Intent intent=new Intent(context, DeliveryBoyOrderDetailActivity.class);
                     intent.putExtra("status",status);
                     intent.putExtra("delivery_state",deliveryState);
                     intent.putExtra("saleId",saleId);
                     intent.putExtra("zoneId",zoneId);
                     intent.putExtra("vendorId",vendorId);
-                    // intent.putExtra("coustmAddress",coustmAddress);
+                     intent.putExtra("cash_order_rate",cash_order_rate);
                     intent.putExtra("userName",userName);
                     intent.putExtra("phoneNo",phoneNo);
                     intent.putExtra("driverId",driverId);
@@ -137,25 +139,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     intent.putExtra("paymentType",paymentType);
                     intent.putExtra("allTotal",String.valueOf(allTotal));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    OrderAdapter.this.context.startActivity(intent);
-                }
-                else {
-                    Intent intent=new Intent(context, OrderDetailActivity.class);
-                    intent.putExtra("status",status);
-                    intent.putExtra("saleId",saleId);
-                    intent.putExtra("zoneId",zoneId);
-                    intent.putExtra("vendorId",vendorId);
-                    // intent.putExtra("coustmAddress",coustmAddress);
-                    intent.putExtra("userName",userName);
-                    intent.putExtra("phoneNo",phoneNo);
-                    intent.putExtra("driverId",driverId);
-                    intent.putExtra("productDetails",productDetails);
-                    intent.putExtra("itemTotal",itemTotal);
-                    intent.putExtra("paymentType",paymentType);
-                    intent.putExtra("allTotal",String.valueOf(allTotal));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    OrderAdapter.this.context.startActivity(intent);
-                }
+                   OrderAdapter.this.context.startActivity(intent);
+//                }
+//                else {
+//                    Intent intent=new Intent(context, OrderDetailActivity.class);
+//                    intent.putExtra("status",status);
+//                    intent.putExtra("saleId",saleId);
+//                    intent.putExtra("zoneId",zoneId);
+//                    intent.putExtra("vendorId",vendorId);
+//                    // intent.putExtra("coustmAddress",coustmAddress);
+//                    intent.putExtra("userName",userName);
+//                    intent.putExtra("phoneNo",phoneNo);
+//                    intent.putExtra("driverId",driverId);
+//                    intent.putExtra("productDetails",productDetails);
+//                    intent.putExtra("itemTotal",itemTotal);
+//                    intent.putExtra("paymentType",paymentType);
+//                    intent.putExtra("allTotal",String.valueOf(allTotal));
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    OrderAdapter.this.context.startActivity(intent);
+//                }
 //                if (onClickListener != null) {
 //                    onClickListener.onClick(position);
 //                }

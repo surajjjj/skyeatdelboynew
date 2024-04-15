@@ -1,5 +1,4 @@
-package com.food.food_order_Delivaryboy;
-
+package com.food.food_order_Delivaryboy.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -17,6 +16,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.food.food_order_Delivaryboy.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 
 
 public class MyFirebaseMessagingService<v> extends FirebaseMessagingService {

@@ -105,6 +105,7 @@ public class NewOrder extends Fragment {
                                     txtOrderNotAvlble.setVisibility(View.GONE);
                                     orderAdapter = new OrderAdapter(getContext(),NewOrderList);
                                     lstData.setAdapter(orderAdapter);
+                                    lstData.notifyAll();
                                 }
                                 else
                                 {

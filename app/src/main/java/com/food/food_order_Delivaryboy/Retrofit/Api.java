@@ -106,7 +106,9 @@ public interface Api {
 
     @GET("actions.php")
     Call<Sample> pickupOrderByDeliveryBoy(@Query("action") String action,
-                                          @Query("sale_id") String sale_id);
+                                          @Query("sale_id") String sale_id,
+                                          @Query("cash_order_rate") String cash_order_rate,
+                                          @Query("cash_order_note") String cash_order_note);
 
     @GET("actions.php")
     Call<Sample> deliverOrderByDeliveryBoy(@Query("action") String action,

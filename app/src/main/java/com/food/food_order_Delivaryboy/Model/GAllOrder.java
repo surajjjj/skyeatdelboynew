@@ -81,6 +81,9 @@ public class GAllOrder {
         @SerializedName("delivery_assigned")
         @Expose
         public String delivery_assigned;
+   @SerializedName("cash_order_rate")
+        @Expose
+        public String cash_order_rate;
 
         @SerializedName("zone_id")
         @Expose
@@ -124,6 +127,9 @@ public class GAllOrder {
 
         public String getZone_id() {
             return zone_id;
+        }
+        public String getCash_order_rate() {
+            return cash_order_rate;
         }
 
         public void setZone_id(String zone_id) {

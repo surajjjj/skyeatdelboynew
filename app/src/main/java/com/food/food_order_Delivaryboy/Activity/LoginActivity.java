@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 email = Objects.requireNonNull(txtUserName.getText()).toString().trim();
                 password = Objects.requireNonNull(txtPassword.getText()).toString().trim();
 
-//                getDeliveryBoyLogin();
+                getDeliveryBoyLogin();
 //                if(LoginTypeActivity.isAdmin)
 //                {
 //                     getAdminLogin();
@@ -105,10 +105,10 @@ public class LoginActivity extends AppCompatActivity {
 //                }
 //                }
             }
-                else if (LoginTypeActivity.isDeliveryBoy)
-                {
-                    getDeliveryBoyLogin();
-                }
+//                else if (LoginTypeActivity.isDeliveryBoy)
+//                {
+//                    getDeliveryBoyLogin();
+//                }
 
         });
         mBottomSheetDialog.show();

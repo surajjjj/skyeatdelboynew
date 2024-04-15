@@ -10,10 +10,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,12 +24,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.food.food_order_Delivaryboy.Activity.DeliveryBoyActivity;
 import com.food.food_order_Delivaryboy.Activity.LoginActivity;
 import com.food.food_order_Delivaryboy.Activity.SplashActivity;
+import com.food.food_order_Delivaryboy.Activity.blockactivity;
 import com.food.food_order_Delivaryboy.Constant;
 import com.food.food_order_Delivaryboy.CustomDialog;
 import com.food.food_order_Delivaryboy.Fragment.DeliveryBoy.DeliveryBoyAllOrder;
@@ -38,13 +43,20 @@ import com.food.food_order_Delivaryboy.Model.GAllOrder;
 import com.food.food_order_Delivaryboy.Model.Sample;
 import com.food.food_order_Delivaryboy.R;
 import com.food.food_order_Delivaryboy.Retrofit.RetrofitClient;
+import com.food.food_order_Delivaryboy.utilities.Config;
+import com.food.food_order_Delivaryboy.utilities.ConnectionDetector;
+import com.food.food_order_Delivaryboy.utilities.JSONParser;
 import com.google.android.material.navigation.NavigationView;
+import com.onesignal.OneSignal;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,6 +70,8 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
     NavigationView navigationView;
     Toolbar toolbar;
     Calendar C;
+    AsyncTask<String, Void, String> updatetoken;
+
     LinearLayout liLayoutMyEarning,linLayoutFixEarning;
     long dateTimeInMillis;
     int day,month,year,minute,second;
@@ -65,6 +79,10 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
     SharedPreferences sharedPreferences;
     private DrawerLayout drawerLayout;
     public ImageView imgGullak;
+    ToggleButton togglebutton;
+    Switch switch1;
+    private static final String  ONESIGNAL_APP_ID="56948f15-2d75-41b4-b96d-b028cbb8a5a7";
+
 
     public String orderCharge,gullak,interest,completeOrder,delCompleteOrder;
     public  String paymentStatus;
@@ -78,24 +96,38 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
     String deliveryBoyEarning;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView txtManagerName,txtVersionCode,txtGullak,txtCompeteOrder,txtFixEarning,txtPerOrderCharge,txtTotalAmount,txtDelBoyCompeteOrder,txtRequestToPay,txtDelBoyTotalAmount;
-    TextView txtCancel,txtPayNow,txtCancelPopup;
+    TextView txtCancel,txtPayNow,txtCancelPopup,status;
     String date;
     public static String DRIVER_ID,DRIVER_NAME,ZONE_ID;
+    AsyncTask<String, Void, String> getAllOrdersnew_Async;
+    AsyncTask<String, Void, String> getAllOrdersnew_Asyncn;
+    AsyncTask<String, Void, String> getAllOrders_Async;
+    JSONParser jsonParser=new JSONParser();
     ArrayList<GAllOrder.Data> completeOrderList=new ArrayList<>();
     ArrayList<GAllOrder.Data> delCompleteOrderList=new ArrayList<>();
-
+    ConnectionDetector cd;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_boy_main);
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE,OneSignal.LOG_LEVEL.NONE);
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
+        OneSignal.promptForPushNotifications();
+
+
         drawerLayout=findViewById(R.id.nav_view);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         toolbar=findViewById(R.id.toolbar);
+        status=findViewById(R.id.status);
         navigationView=findViewById(R.id.navigation_view);
+        cd=new ConnectionDetector(this);
         txtVersionCode=navigationView.findViewById(R.id.txtVersionCode);
         View headerView = navigationView.getHeaderView(0);
         txtManagerName= headerView.findViewById(R.id.txtManagerName);
         imgGullak=headerView.findViewById(R.id.imgGullak);
+        switch1=headerView.findViewById(R.id.switch1);
         //txtVersionCode = findViewById(R.id.txtVersionCode);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -105,6 +137,7 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
         toggle.syncState();
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         toolbar.setTitle("All Orders");
+
 
         if(savedInstanceState==null)
         {
@@ -124,8 +157,90 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
         {
             DRIVER_NAME=sharedPreferences.getString("first_name",null)+" "+sharedPreferences.getString("last_name",null);
         }
+        OneSignal.promptForPushNotifications();
+        String push= OneSignal.getDeviceState().getUserId();
+       Toast.makeText(this, ""+push, Toast.LENGTH_SHORT).show();
+
+        if(cd.isConnectingToInternet()){
+            String url= null;
+
+            try {
+                url = Config.get_url+
+                        "action=update_deliveryboy_token" +
+                        "&driver_id=" + URLEncoder.encode(DRIVER_ID=sharedPreferences.getString("delivery_boy_id",null) ,"utf-8")+
+                        "&fcm_token=" + URLEncoder.encode(""+push, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            updatetoken = new UpdateToken();
+            updatetoken.execute(url);
+
+        }else{
+//                                Toast.makeText(HotelAdmin_MenusActivity.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+//                                finish();
+        }
         txtManagerName.setText("Mr. "+DRIVER_NAME);
-        txtVersionCode.setText(SplashActivity.versionName);
+     //   txtVersionCode.setText(SplashActivity.versionName);
+
+        if(cd.isConnectingToInternet()){
+            String url= null;
+            try {
+                url = Config.get_url+
+                        "action=get_all_del_boy"+
+                "&driver_id="+ URLEncoder.encode(DRIVER_ID,"utf-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+            ;
+            //Toast.makeText(this, ""+db.getDelivaryboyId(), Toast.LENGTH_SHORT).show();
+            getAllOrders_Async=new GetAllOrders_Async();
+            getAllOrders_Async.execute(url);
+        }else{
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                if(cd.isConnectingToInternet()){
+                    String url= null;
+                    try {
+                        url = Config.get_url+
+                                "action=update_del_boy_status"+
+                                "&driver_id="+ URLEncoder.encode(DRIVER_ID,"utf-8")+
+                                "&livestatus="+ URLEncoder.encode("true","utf-8")+
+                                "&drivingMode="+ URLEncoder.encode("1","utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                  //  Toast.makeText(this, ""+DRIVER_ID, Toast.LENGTH_SHORT).show();
+                    getAllOrdersnew_Async=new GetAllOrdersnew_Async();
+                    getAllOrdersnew_Async.execute(url);
+                }else{
+                   // Toast.makeText(Collectdel_cash_main_admin.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                }
+             //   status.setText("Avaliable");
+            } else {
+                if(cd.isConnectingToInternet()){
+                    String url= null;
+                    try {
+                        url = Config.get_url+
+                                "action=update_del_boy_status_false"+
+                                "&driver_id="+ URLEncoder.encode(DRIVER_ID,"utf-8")+
+                                "&livestatus="+ URLEncoder.encode("false","utf-8")+
+                                "&drivingMode="+ URLEncoder.encode("0","utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    //Toast.makeText(this, ""+db.getDelivaryboyId(), Toast.LENGTH_SHORT).show();
+                    getAllOrdersnew_Asyncn=new GetAllOrdersnew_Asyncn();
+                    getAllOrdersnew_Asyncn.execute(url);
+                }else{
+                    // Toast.makeText(Collectdel_cash_main_admin.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
 
 //        date=day+"/"+(month+1)+""+year;
@@ -166,24 +281,27 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
             public void onRefresh() {
                 try
                 {
-                    delCompleteOrder="";
-                    orderCharge="";
-                    delTotalAmout=0;
-                    gullak="";
-                    completeOrder="";
-                    totalAmount=0.0;
-                    completeOrderList.clear();
-                    delCompleteOrderList.clear();
-                    txtDelBoyCompeteOrder.setText("");
-                    txtDelBoyTotalAmount.setText("");
-                    txtPerOrderCharge.setText("");
-                    txtGullak.setText("");
-                    txtTotalAmount.setText("");
-                    txtCompeteOrder.setText("");
-                    getOrderCharge();
-                    getDeliveryBoyGullak();
-                    getCompleteOrder();
-                    getDelBoyCompleteOrder();
+
+                    Intent intent=new Intent(DeliveryBoyMainActivity.this, DeliveryBoyMainActivity.class);
+                    startActivity(intent);
+//                    delCompleteOrder="";
+//                    orderCharge="";
+//                    delTotalAmout=0;
+//                    gullak="";
+//                    completeOrder="";
+//                    totalAmount=0.0;
+//                    completeOrderList.clear();
+//                    delCompleteOrderList.clear();
+//                    txtDelBoyCompeteOrder.setText("");
+//                    txtDelBoyTotalAmount.setText("");
+//                    txtPerOrderCharge.setText("");
+//                    txtGullak.setText("");
+//                    txtTotalAmount.setText("");
+//                    txtCompeteOrder.setText("");
+//                    getOrderCharge();
+//                    getDeliveryBoyGullak();
+//                    getCompleteOrder();
+//                    getDelBoyCompleteOrder();
 
 
                 }
@@ -373,6 +491,8 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
                 public void onResponse(Call<GAllOrder> call, Response<GAllOrder> response) {
                     assert response.body() != null;
                     completeOrderList= (ArrayList<GAllOrder.Data>) response.body().getData();
+
+
                     if(completeOrderList.size()>0)
                     {
                         completeOrder= String.valueOf(completeOrderList.size());
@@ -716,6 +836,249 @@ public class DeliveryBoyMainActivity extends AppCompatActivity implements Naviga
         else {
             exitAlertDialog();
             // super.onBackPressed();
+        }
+    }
+
+    class GetAllOrdersnew_Async extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            dialog=new ProgressDialog(SkyEatAdminMain_OrderDetails.this);
+//            dialog.setMessage("Getting all orders");
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//                @Override
+//                public void onCancel(DialogInterface dialog) {
+//                    getAllOrders_Async.cancel(true);
+//                    finish();
+//                }
+//            });
+//            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return jsonParser.doGetRequest(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //   dialog.dismiss();
+            if(result==null||result.trim().length()<=0){
+                Toast.makeText(DeliveryBoyMainActivity.this,"No response from server, Please check your internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                JSONObject jsonObject=new JSONObject(result);
+                if(jsonObject.getString("result").equals("true")){
+
+
+
+//                    Intent intent=new Intent(Collectdel_cash_main_admin.this,HomeActivity.class);
+//                    startActivity(intent);
+                    Toast.makeText(DeliveryBoyMainActivity.this  , "Drive Mode Is On", Toast.LENGTH_SHORT).show();
+                  //  finish();
+
+
+
+                }
+                else
+                {
+                  // Toast.makeText(DeliveryBoyMainActivity.this  , "not Cash received", Toast.LENGTH_SHORT).show();
+
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class GetAllOrdersnew_Asyncn extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            dialog=new ProgressDialog(SkyEatAdminMain_OrderDetails.this);
+//            dialog.setMessage("Getting all orders");
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//                @Override
+//                public void onCancel(DialogInterface dialog) {
+//                    getAllOrders_Async.cancel(true);
+//                    finish();
+//                }
+//            });
+//            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return jsonParser.doGetRequest(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //   dialog.dismiss();
+            if(result==null||result.trim().length()<=0){
+                Toast.makeText(DeliveryBoyMainActivity.this,"No response from server, Please check your internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                JSONObject jsonObject=new JSONObject(result);
+                if(jsonObject.getString("result").equals("true")){
+
+
+
+//                    Intent intent=new Intent(Collectdel_cash_main_admin.this,HomeActivity.class);
+//                    startActivity(intent);
+                    Toast.makeText(DeliveryBoyMainActivity.this  , "Drive Mode Is Off", Toast.LENGTH_SHORT).show();
+                    //  finish();
+
+
+
+                }
+                else
+                {
+                    //  Toast.makeText(Collectdel_cash_main_admin.this  , "not Cash received", Toast.LENGTH_SHORT).show();
+
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }    class GetAllOrders_Async extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            dialog=new ProgressDialog(SkyEatAdminMain_OrderDetails.this);
+//            dialog.setMessage("Getting all orders");
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//                @Override
+//                public void onCancel(DialogInterface dialog) {
+//                    getAllOrders_Async.cancel(true);
+//                    finish();
+//                }
+//            });
+//            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return jsonParser.doGetRequest(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //   dialog.dismiss();
+            if (result == null || result.trim().length() <= 0) {
+                Toast.makeText(DeliveryBoyMainActivity.this, "No response from server, Please check your internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                if (jsonObject.getString("result").equals("true")) {
+                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jobj = jsonArray.getJSONObject(i);
+
+                        final String driver_id=jobj.getString("driver_id");
+                        final String block=jobj.getString("block");
+                        final String livestatus=jobj.getString("livestatus");
+                        if (livestatus.equals("true"))
+                        {
+                            switch1.setChecked(true);
+                        }
+                        else {
+                            switch1.setChecked(false);
+                        }
+
+                        if (block.equals("1"))
+                        {
+                            Intent intent=new Intent(DeliveryBoyMainActivity.this, blockactivity.class);
+                             startActivity(intent);
+                             finish();
+
+                        }
+                        else {
+
+                        }
+
+//                    Intent intent=new Intent(Collectdel_cash_main_admin.this,HomeActivity.class);
+//                    startActivity(intent);
+                     //   Toast.makeText(DeliveryBoyMainActivity.this, "Drive Mode Is Off", Toast.LENGTH_SHORT).show();
+                        //  finish();
+
+
+                    }
+                } else {
+                    //  Toast.makeText(Collectdel_cash_main_admin.this  , "not Cash received", Toast.LENGTH_SHORT).show();
+
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class UpdateToken extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            dialog=new ProgressDialog(CategoriesActivity.this);
+//            dialog.setMessage("Getting trending menus");
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//                @Override
+//                public void onCancel(DialogInterface dialog) {
+//                    getcoupon.cancel(true);
+//                    finish();
+//                }
+//            });
+//            dialog.show();
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            return jsonParser.doGetRequest(params[0]);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //    dialog.dismiss();
+            if(result==null||result.trim().length()<=0){
+                Toast.makeText(DeliveryBoyMainActivity.this,"No response from server, Please check your internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
+                JSONObject jsonObject=new JSONObject(result);
+                if(jsonObject.getString("result").equals("true")){
+                    JSONArray jsonArray1=jsonObject.getJSONArray("data");
+                    for(int j=0;j<jsonArray1.length();j++){
+                        JSONObject jobj1=jsonArray1.getJSONObject(j);
+                        Toast.makeText(DeliveryBoyMainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

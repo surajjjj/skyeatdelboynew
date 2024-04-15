@@ -37,6 +37,14 @@ public class Hotel
         @Expose
         private String phone;
 
+        public String getCash() {
+            return cash;
+        }
+
+        @SerializedName("cash")
+        @Expose
+        private String cash;
+
         public String getPhone() {
             return phone;
         }

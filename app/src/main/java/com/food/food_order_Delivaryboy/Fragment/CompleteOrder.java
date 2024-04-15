@@ -75,8 +75,11 @@ public class CompleteOrder extends Fragment {
                     @Override
                     public void onResponse(Call<GAllOrder> call, Response<GAllOrder> response)
                     {
+
                        // Toast.makeText(getContext(), "complete", Toast.LENGTH_SHORT).show();
                         orderList= (ArrayList<GAllOrder.Data>) response.body().getData();
+
+
                         if(orderList.size()>0)
                         {
 //                            sharedPreferences=context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -91,11 +94,14 @@ public class CompleteOrder extends Fragment {
                                     if(orderList.get(i).getStatus().equalsIgnoreCase("Completed"))
                                     {
                                         CompleteOrderList.add(orderList.get(i));
+                                        CompleteOrderList.notifyAll();
+                                        orderAdapter.notifyDataSetChanged();
                                     }
                                 }
                                 //int len= CompleteOrderList.size();
                                 orderAdapter = new OrderAdapter(getContext(),CompleteOrderList);
                                 lstData.setAdapter(orderAdapter);
+
 
                             }
                             else
@@ -157,6 +163,8 @@ public class CompleteOrder extends Fragment {
                 }
                 orderAdapter = new OrderAdapter(getContext(),CompleteOrderList);
                 lstData.setAdapter(orderAdapter);
+                orderAdapter.notifyDataSetChanged();
+
             }
 
             @Override
