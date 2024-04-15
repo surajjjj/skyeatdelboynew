@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "666518855280",
+    "project_id": "skyeatadmin-8081e",
+    "storage_bucket": "skyeatadmin-8081e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666518855280:android:6e12ed4aa92ffac8791eb5",
+        "android_client_info": {
+          "package_name": "com.example.skyeatadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666518855280-hf5fbkvelok538bmrep5giumtjm5mpbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL_LIxpqHP3_yXnE1Wf2ev2qJL6VwrgMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666518855280-hf5fbkvelok538bmrep5giumtjm5mpbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

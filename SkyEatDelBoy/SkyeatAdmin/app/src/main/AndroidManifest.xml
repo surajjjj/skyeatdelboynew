@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SkyeatAdmin"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activity.CollectCash"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DelivaryBoy.DealiveryBoyTransitionHistroryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DelivaryBoy.DeliveryBoyOrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DelivaryBoy.DeliveryBoyMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Hotel.HotelMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.LoginTypeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.HotelListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DeliveryBoyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Fragment.AllOrder"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.PendingPayment"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.OrderDetailActivity"
+            android:exported="false" /> <!-- <service -->
+        <!-- android:name=".FirebaseIDService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

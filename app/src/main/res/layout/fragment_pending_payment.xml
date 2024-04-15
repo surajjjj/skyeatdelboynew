@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp">
+
+    <ImageView
+        android:id="@+id/imgBack1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/baseline_arrow_back_24">
+    </ImageView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment Details"
+            android:textSize="22sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/gilroybold"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/skyeatprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text=""/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="35dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Remain Cash"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/status_active"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text="Active"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:orientation="horizontal">
+                <EditText
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:id="@+id/txtRemainCash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="* Remain Cash"
+                    android:textSize="16sp"
+                    android:inputType="text"
+                    android:padding="15dp" />
+
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="10"
+                    android:paddingRight="5dp"
+                    android:src="@drawable/baseline_edit_24"
+                    android:visibility="gone">
+
+                </ImageView>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linLayoutAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="* Minus Amount"/>
+
+                <EditText
+                    android:id="@+id/txtMinusAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="* Enter Amount"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:padding="15dp" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Wallet Amount"/>
+
+            <EditText
+                android:id="@+id/txtWalletAmount"
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="* Wallet Amount"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Message"/>
+            <EditText
+                android:id="@+id/txtMassage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="* Message"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/tvmenudetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="* Message"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/tvmenudPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Menu Price"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:padding="15dp" />
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/tvmenudstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Active"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+            <EditText
+                android:text="0"
+                android:visibility="gone"
+                android:id="@+id/tvMenuserverprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+
+
+
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/editTextImageDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Category Name"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/etstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Active"
+                android:textSize="16sp"
+                android:padding="15dp" />
+
+
+
+            <TextView
+                android:id="@+id/btnSubmitCash"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:text="Submit Cash"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/gilroybold"
+                android:background="@color/purple_500"
+                android:textColor="@color/colorWhite"
+                />
+
+            <EditText
+                android:id="@+id/btnUpdateWallet"
+                android:focusable="false"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:text="Update Wallet"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/gilroybold"
+                android:background="@color/purple_500"
+                android:textColor="@color/colorWhite"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

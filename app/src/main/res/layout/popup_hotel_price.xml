@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:animateLayoutChanges="true"
+    android:animationCache="true"
+    android:background="@color/white"
+    android:gravity="center|left"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorWhite"
+    app:cardElevation="50dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Update Price"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGrey">
+
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Name:  "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroybold"
+                    android:textSize="14sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/txtHotelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroybold"
+                    android:textColor="@color/purple_500"
+                    android:textSize="14sp">
+
+                </TextView>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Increase Percentage"/>
+            <EditText
+                android:id="@+id/txtIncreasePer"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="7dp"
+                android:hint="* Increase Percentage"
+                android:textSize="16sp"
+                android:inputType="number"
+
+                android:padding="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Decrease Percentage"/>
+            <EditText
+                android:id="@+id/txtDecreasePer"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="7dp"
+                android:hint="* Decrease Percentage"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:padding="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Password"/>
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="7dp"
+                android:hint="* Password"
+                android:textSize="16sp"
+                android:inputType="textPassword"
+                android:padding="15dp" />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/txtUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="17dp"
+                    android:layout_marginEnd="1dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="Update"
+                    android:background="#0F8C15">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/txtCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="17dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="Cancel"
+                    android:background="#BF1313">
+                </TextView>
+
+            </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

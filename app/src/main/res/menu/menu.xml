@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuAllOrder"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="All Order">
+
+        </item>
+        <item
+            android:id="@+id/menuDeliveryBoy"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Delivery Boy List">
+
+        </item>
+
+        <item
+            android:id="@+id/menuMyZone"
+            android:icon="@drawable/ic_baseline_message_24"
+            android:title="My Zone">
+
+        </item>
+
+        <item
+            android:id="@+id/menuPayment"
+            android:icon="@drawable/ic_baseline_camera_alt_24"
+            android:title="My Total Pending payment"
+            android:visible="false">
+
+        </item>
+
+        <item
+            android:id="@+id/menuCollectCash"
+            android:icon="@drawable/ic_baseline_camera_alt_24"
+            android:title="Collect Cash">
+
+        </item>
+
+        <item
+            android:id="@+id/menuLogout"
+            android:icon="@drawable/ic_baseline_camera_alt_24"
+            android:title="Logout">
+
+        </item>
+
+
+
+    </group>
+
+<!--    <item android:title="Communicate through">-->
+
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/share"-->
+<!--                android:icon="@drawable/ic_baseline_share_24"-->
+<!--                android:title="Share"></item>-->
+
+<!--            <item-->
+<!--                android:id="@+id/send"-->
+<!--                android:icon="@drawable/ic_baseline_send_24"-->
+<!--                android:title="Send"></item>-->
+
+
+<!--        </menu>-->
+<!--    </item>-->
+
+
+</menu>

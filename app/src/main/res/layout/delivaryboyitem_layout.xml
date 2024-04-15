@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/colorWhite">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/food_card">
+
+            <LinearLayout
+                android:background="#f9f9f9"
+                android:id="@+id/ivCategoryImage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="-1dp"
+                android:orientation="vertical"
+                android:scaleType="centerCrop">
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/lin1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:fontFamily="serif"
+                        android:text="Adhar NO :-"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvadharno"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin2"
+android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:fontFamily="serif"
+                        android:text="Bike Number"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvdelivarybikeno"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:text="0"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/lin3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin2"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="3"
+                        android:fontFamily="serif"
+                        android:text="address"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvdelivaryboyaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/lin4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin3"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="3"
+                        android:fontFamily="serif"
+                        android:text="Order Type"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvOrderType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:textColor="?attr/actionModeSplitBackground"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtDelivaryBoyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivCategoryImage"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="serif"
+                android:padding="4dp"
+                android:text="Delivary Boy Name"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:fontFamily="serif"
+                android:text="Menu Qty"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="6dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/ivCategoryImage"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCategoryName"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:fontFamily="serif"
+
+                android:layout_marginStart="240dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="6dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/ivCategoryImage"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+
+                android:id="@+id/delivaryboymobilenumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvCategoryName"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="6dp"
+
+                android:fontFamily="serif"
+                android:padding="4dp"
+                android:text=""
+                android:textColor="@drawable/button_round_red"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:visibility="gone"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Menu Name"
+                android:textSize="12sp"
+                android:textStyle="bold"
+
+                android:fontFamily="serif"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="6dp"
+                android:id="@+id/tvOrderMenuqty"
+                android:layout_below="@+id/tvCategoryName"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+
+                android:textSize="12sp"
+                android:textStyle="bold"
+
+                android:fontFamily="serif"
+                android:layout_marginStart="240dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="6dp"
+                android:id="@+id/tvOrderMenuPrice"
+                android:layout_below="@+id/tvCategoryName"/>
+
+            <ImageView
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/tvCategoryName"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="6dp"
+                android:tint="@color/colorBalck"
+                android:layout_marginBottom="16dp"
+                android:background="@android:drawable/screen_background_light_transparent"
+                android:fontFamily="serif"
+                android:padding="4dp"
+                android:textSize="0sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/i_plus"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="6dp"
+                android:background="?attr/actionBarItemBackground"
+               />
+
+            <TextView
+                android:id="@+id/t_count"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/i_plus"
+                android:layout_alignBottom="@+id/i_plus"
+                android:layout_toStartOf="@+id/i_plus"
+
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textSize="16sp"
+                android:layout_toLeftOf="@+id/i_plus" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:id="@+id/i_minus"
+                android:padding="6dp"
+                android:background="?attr/actionBarItemBackground"
+                android:layout_toStartOf="@+id/t_count"
+                android:layout_alignBottom="@+id/t_count"
+                android:layout_toLeftOf="@+id/t_count" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:weightSum="9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linstatusdelivertodeliverboy"
+                android:layout_weight="3"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="16dp">
+                <TextView
+
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    android:id="@+id/tvstatusdelivertodeliverboy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linstatusacceptorder"
+                android:layout_weight="3"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="16dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tvstatusacceptorder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="serif"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linstatusDeliverorder"
+                android:layout_weight="3"
+
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="16dp">
+                <TextView
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+
+                    android:fontFamily="serif"
+                    android:id="@+id/tvstatusDeliverorder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

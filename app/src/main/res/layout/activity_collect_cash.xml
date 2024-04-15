@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_arrow_back_24">
+        </ImageView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment Details"
+            android:textSize="22sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/gilroybold"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/gilroybold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Name :"/>
+
+                <TextView
+                    android:id="@+id/txtDriverName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/gilroybold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/purple_500"
+                   />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* SkyEat Gullak"/>
+            <EditText
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:id="@+id/txtGullak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="* SkyEat Gullak"
+                    android:textSize="16sp"
+                    android:inputType="text"
+                    android:padding="15dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* CompleteOrder"/>
+
+            <EditText
+                android:id="@+id/txtCompeteOrder"
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="* Complete Order"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text="* Total Amount"/>
+            <EditText
+                android:id="@+id/txtTotalAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="* Total Amount"
+                android:textSize="16sp"
+                android:inputType="text"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/btnCollectCash"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:text="Collect Cash"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/gilroybold"
+                android:background="@color/purple_500"
+                android:textColor="@color/colorWhite"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

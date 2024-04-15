@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759319638305",
+    "firebase_url": "https://food-order-del-boy.firebaseio.com",
+    "project_id": "food-order-del-boy",
+    "storage_bucket": "food-order-del-boy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759319638305:android:b8aff7d0d486efbc6f0e60",
+        "android_client_info": {
+          "package_name": "food.food_order_Delivaryboy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759319638305-um1ibu7t10pnj0f6lahjhggfla66602k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1qQEJBxwDOQcatiNuC6sbnL7a-3qxpZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759319638305-um1ibu7t10pnj0f6lahjhggfla66602k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SkyeatAdmin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rupee_symbol">&#x20b9;</string>
+
+    <string name="navigation_draw_open">open navigation drawer</string>
+    <string name="navigation_draw_close">close navigation drawer</string>
+
+
+</resources>

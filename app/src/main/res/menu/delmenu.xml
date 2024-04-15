@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menuAllOrder"
+            android:icon="@drawable/order_food"
+            android:title="All Order">
+
+        </item>
+        <item
+            android:id="@+id/menuCompleteOrder"
+            android:icon="@drawable/complte_order"
+            android:title="Total Complete Order">
+
+        </item>
+        <item
+            android:id="@+id/menuMyEarning"
+            android:icon="@drawable/myearning"
+            android:title="My Earning(Only Per Order)">
+
+        </item>
+        <item
+            android:id="@+id/menuMyTransition"
+            android:icon="@drawable/histiry"
+            android:title="My Request History">
+
+        </item>
+
+        <item
+            android:id="@+id/menuLogout"
+            android:icon="@drawable/turn_off"
+            android:title="Logout">
+
+        </item>
+
+
+
+    </group>
+
+    <!--    <item android:title="Communicate through">-->
+
+    <!--        <menu>-->
+    <!--            <item-->
+    <!--                android:id="@+id/share"-->
+    <!--                android:icon="@drawable/ic_baseline_share_24"-->
+    <!--                android:title="Share"></item>-->
+
+    <!--            <item-->
+    <!--                android:id="@+id/send"-->
+    <!--                android:icon="@drawable/ic_baseline_send_24"-->
+    <!--                android:title="Send"></item>-->
+
+
+    <!--        </menu>-->
+    <!--    </item>-->
+
+
+</menu>

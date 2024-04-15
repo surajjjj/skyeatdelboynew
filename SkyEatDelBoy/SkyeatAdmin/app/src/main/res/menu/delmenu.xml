@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menuAllOrder"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="All Order">
+
+        </item>
+        <item
+            android:id="@+id/menuCompleteOrder"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Total Complete Order">
+
+        </item>
+        <item
+            android:id="@+id/menuMyEarning"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="My Earning">
+
+        </item>
+        <item
+            android:id="@+id/menuMyTransition"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="My Transition">
+
+        </item>
+
+        <item
+            android:id="@+id/menuLogout"
+            android:icon="@drawable/ic_baseline_camera_alt_24"
+            android:title="Logout">
+
+        </item>
+
+
+
+    </group>
+
+    <!--    <item android:title="Communicate through">-->
+
+    <!--        <menu>-->
+    <!--            <item-->
+    <!--                android:id="@+id/share"-->
+    <!--                android:icon="@drawable/ic_baseline_share_24"-->
+    <!--                android:title="Share"></item>-->
+
+    <!--            <item-->
+    <!--                android:id="@+id/send"-->
+    <!--                android:icon="@drawable/ic_baseline_send_24"-->
+    <!--                android:title="Send"></item>-->
+
+
+    <!--        </menu>-->
+    <!--    </item>-->
+
+
+</menu>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:gravity="center"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtSrNo"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:layout_width="60dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_height="match_parent"
+        android:text="Sr.No" />
+
+    <TextView
+        android:id="@+id/txtDelivaryBoyName"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/txtAmount"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="Amount" />
+    <ImageView
+        android:id="@+id/imgStatus"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:layout_width="100dp"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
