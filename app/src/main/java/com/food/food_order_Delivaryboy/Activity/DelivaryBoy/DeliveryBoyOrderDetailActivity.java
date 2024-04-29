@@ -61,7 +61,7 @@ public class DeliveryBoyOrderDetailActivity extends AppCompatActivity {
     ConnectionDetector cd;
 
     TextView txtCancelOrder;
-    ImageView imgUserPhoneNo,imgBack;
+    ImageView imgUserPhoneNo,imgBack,imgLocation;
     MediaPlayer mp,mppickuo,mpdeliverd;
     TextView btnAccept,btnReject,txtPickUp,txtDeliver,txtPickUpdelivery;
     String delivery_assigned;
@@ -71,6 +71,8 @@ public class DeliveryBoyOrderDetailActivity extends AppCompatActivity {
     String gtotal;
     TextView txtDBoyName,txtHotelName,txtOrderStatus,txttcashdetaails;
     public boolean isAcceptOrder=false;
+    public double latitude,longitude;
+
 
     TextView txtAddtwo,txtAdd, txtSaleId,txtUserName,txtSaleCode,txtBuyer,txtPaymentType,txtAllTotal,txtPaymentStatus,txtDeliveryState;
     List<GAllOrder.Data> orderList =new ArrayList<>();
@@ -106,6 +108,8 @@ public class DeliveryBoyOrderDetailActivity extends AppCompatActivity {
             allTotal=bundle.getString("allTotal");
             //allTotal=bundle.getString("allTotal");
             paymentType=bundle.getString("paymentType");
+            latitude= Double.parseDouble(Objects.requireNonNull(bundle.getString("latitude")));
+            longitude= Double.parseDouble(Objects.requireNonNull(bundle.getString("longitude")));
         }
 
         initialiseView();
@@ -145,6 +149,7 @@ public class DeliveryBoyOrderDetailActivity extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.orderacc);
         mppickuo = MediaPlayer.create(this, R.raw.pickup);
         mpdeliverd = MediaPlayer.create(this, R.raw.deliverd);
+        imgLocation=findViewById(R.id.imgLocation);
 
         btnAccept=findViewById(R.id.btnAccept);
         btnReject=findViewById(R.id.btnReject);
@@ -210,7 +215,15 @@ public class DeliveryBoyOrderDetailActivity extends AppCompatActivity {
 //                Toast.makeText(DeliveryBoyOrderDetailActivity.this, phoneNo, Toast.LENGTH_SHORT).show();
             }
         });
-
+        imgLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                double latitude = 20.9822718; // Example latitude
+//                double longitude = 74.3182376; // Example longitude
+                openGoogleMap(latitude,longitude);
+                //Toast.makeText(DeliveryBoyOrderDetailActivity.this, "aaa", Toast.LENGTH_SHORT).show();
+            }
+        });
         btnAccept.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -648,6 +661,14 @@ public class DeliveryBoyOrderDetailActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    public void openGoogleMap(double latitude,double longitude)
+    {
+        String uri = "geo:" + latitude + "," + longitude + "?q=" + latitude + "," + longitude;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps");
+        startActivity(intent);
+
     }
 
 }

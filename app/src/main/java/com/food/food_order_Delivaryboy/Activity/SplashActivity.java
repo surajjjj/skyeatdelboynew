@@ -71,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
        }
         else
         {
-            //getDelBoyVersion();
+            getDelBoyVersion();
        }
     }
     public void updateDialog() {

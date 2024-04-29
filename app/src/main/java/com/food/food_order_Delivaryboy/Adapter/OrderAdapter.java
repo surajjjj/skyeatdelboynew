@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder>
 {
     Context context;
-    public String Address,phoneNo,userName,payment_type;
+    public String Address,phoneNo,userName,payment_type,latitude,longitude;;
     ArrayList<GAllOrder.Data> orderList;
     //public OnClickListener onClickListener;
     public static String coustmAddress,saleId;
@@ -108,6 +108,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     JSONObject json1 = new JSONObject(coustmAddress);
                     userName= json1.getString("username");
                     phoneNo= json1.getString("phone");
+                    latitude= json1.getString("latitude");
+                    longitude= json1.getString("longitude");
 
                 } catch (JSONException e)
                 {
@@ -133,6 +135,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                      intent.putExtra("cash_order_rate",cash_order_rate);
                     intent.putExtra("userName",userName);
                     intent.putExtra("phoneNo",phoneNo);
+                    intent.putExtra("latitude",latitude);
+                    intent.putExtra("longitude",longitude);
                     intent.putExtra("driverId",driverId);
                     intent.putExtra("productDetails",productDetails);
                     intent.putExtra("itemTotal",itemTotal);

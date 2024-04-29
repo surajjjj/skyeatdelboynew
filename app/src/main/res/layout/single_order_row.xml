@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <TextView
+        android:visibility="gone"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+        android:textColor="#ff471a"
+
+
+        android:layout_marginTop="7dp"
+        android:text="Swipe up referesh find new order"
+        android:fontFamily="@font/gilroybold"
+        />
 
     <androidx.cardview.widget.CardView
+
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="140dp"
         android:id="@+id/cardView"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/white"
+        android:background="@color/colorgrey1"
         android:orientation="vertical"
         android:animateLayoutChanges="true"
         android:animationCache="true"
@@ -22,7 +39,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         app:cardElevation="7dp">
+
         <LinearLayout
+
+            android:background="@drawable/multicolor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -42,15 +62,70 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp">
-                <TextView
-                    android:id="@+id/txtSaleID"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:text="Sale ID #"
-                    android:textStyle="bold">
-                </TextView>
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_weight="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorGrey"
+                        android:textSize="14sp"
+                        android:text="Skyeat Pvt Ltd"
+                        android:textStyle="bold">
+                    </TextView>
+                    <ImageView
+                        android:layout_weight="7"
+                        android:gravity="center"
+                        android:src="@drawable/skyeat_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:padding="3dp"
+                        android:textColor="@color/colorGrey" />
+
+                </LinearLayout>
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorgrey1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp" />
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_weight="3"
+                        android:id="@+id/txtSaleID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorGrey2"
+                        android:textSize="14sp"
+                        android:text="Sale ID #"
+                        android:textStyle="bold">
+                    </TextView>
+                    <TextView
+                        android:background="@drawable/button_round"
+                        android:layout_weight="7"
+                        android:id="@+id/txtStatus"
+                        android:gravity="center"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:padding="3dp"
+                        android:fontFamily="@font/gilroybold"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/txtDate"
                     android:layout_width="match_parent"
@@ -58,12 +133,14 @@
                     android:text="Date"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:textColor="#EBFA6F43">
+                    android:textColor="@color/colorGrey2">
                 </TextView>
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/txtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="8dp"
                     android:textStyle="bold"
                     android:textSize="12sp"
@@ -76,87 +153,90 @@
                 <!--            android:background="@color/black"-->
                 <!--            android:layout_height="0.8dp">-->
                 <!--        </View>-->
-                <View
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorAccent"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp" />
+
+
                 <LinearLayout
 
                     android:layout_width="match_parent"
-                    android:weightSum="5"
-
+                    android:weightSum="9"
 
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_weight="3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:padding="3dp"
-                        android:textSize="15dp"
-                        android:text="Order Status :-"
-                        android:fontFamily="@font/gilroybold"
-                        android:textColor="@color/colorBalck" />
-                    <TextView
-                        android:layout_weight="2"
-                        android:id="@+id/txtStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:textSize="15dp"
-                        android:text=""
-                        android:fontFamily="@font/gilroybold"
-                        android:textColor="#ff471a" />
+
+
                     <TextView
                         android:visibility="gone"
-                        android:layout_weight="3"
-                        android:id="@+id/txt_city"
+                        android:id="@+id/process"
+                        android:layout_weight="7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:gravity="center"
+                        android:gravity="right"
+                        android:textColor="#ff471a"
+
                         android:padding="3dp"
-                        android:text="adada"
+                        android:text="Click here and Process Order"
                         android:fontFamily="@font/gilroybold"
-                        android:textSize="13dp"
-                        android:textColor="#ff471a" />
+                        />
 
-<!--                    <TextView-->
+                    <TextView
+                        android:visibility="gone"
 
-<!--                        android:layout_weight="3"-->
-<!--                        android:visibility="gone"-->
-<!--                        android:id="@+id/txt_pricetotla"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:fontFamily="@font/gilroybold"-->
-<!--                        android:gravity="center"-->
-<!--                        android:padding="5dp"-->
-<!--                        android:text="asasasas"-->
-<!--                        android:textColor="@color/colorGreen"-->
-<!--                        android:textSize="14dp"-->
-<!--                        android:textStyle="bold" />-->
+                        android:id="@+id/txt_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="7"
+                        android:fontFamily="@font/gilroybold"
+                        android:gravity="right"
+                        android:padding="3dp"
+                        android:textSize="13dp" />
 
-<!--                    <TextView-->
-<!--                        android:layout_weight="3"-->
+                    <!--                    <TextView-->
 
-<!--                        android:id="@+id/txt_deboyname"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="5dp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:padding="3dp"-->
-<!--                        android:text="adada"-->
-<!--                        android:textColor="#ff471a"-->
-<!--                        android:textSize="13dp" />-->
+                    <!--                        android:layout_weight="3"-->
+                    <!--                        android:visibility="gone"-->
+                    <!--                        android:id="@+id/txt_pricetotla"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:fontFamily="@font/gilroybold"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:padding="5dp"-->
+                    <!--                        android:text="asasasas"-->
+                    <!--                        android:textColor="@color/colorGreen"-->
+                    <!--                        android:textSize="14dp"-->
+                    <!--                        android:textStyle="bold" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_weight="3"-->
+
+                    <!--                        android:id="@+id/txt_deboyname"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginLeft="5dp"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:padding="3dp"-->
+                    <!--                        android:text="adada"-->
+                    <!--                        android:textColor="#ff471a"-->
+                    <!--                        android:textSize="13dp" />-->
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorGrey"
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="40dp">
+
                 </LinearLayout>
             </LinearLayout>
 
+
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

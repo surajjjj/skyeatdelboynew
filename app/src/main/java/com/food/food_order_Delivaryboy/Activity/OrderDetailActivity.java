@@ -1,10 +1,12 @@
 package com.food.food_order_Delivaryboy.Activity;
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +31,9 @@ import com.food.food_order_Delivaryboy.Model.Hotel;
 import com.food.food_order_Delivaryboy.Model.Sample;
 import com.food.food_order_Delivaryboy.R;
 import com.food.food_order_Delivaryboy.Retrofit.RetrofitClient;
+import com.food.food_order_Delivaryboy.utilities.Config;
+import com.food.food_order_Delivaryboy.utilities.ConnectionDetector;
+import com.food.food_order_Delivaryboy.utilities.JSONParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,10 +51,14 @@ public class OrderDetailActivity extends AppCompatActivity
 {
     RecyclerView lstItem,lstDeliveryBoy;
     CustomDialog customDialog;
+    ConnectionDetector cd;
+    JSONParser jsonParser=new JSONParser();
+
     TextView txtReason,txtManagerName,txtSubmit,txtCancel,txtItemTotal,txtDeliveryFee,txtStoreCharge,txtTax;
     String managerName,reason;
     LinearLayout linLayout,linLayoutCancel;
     ItemAdapter itemAdapter;
+    AsyncTask<String, Void, String> updatetokenall;
     TextView txtCancelOrder;
     ImageView imgUserPhoneNo,imgDelBoyPhone,imgHotelPhone,imgBack;
     TextView btnAccept,btnReject;
@@ -72,6 +81,7 @@ public class OrderDetailActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+        cd=new ConnectionDetector(this);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -175,7 +185,22 @@ public class OrderDetailActivity extends AppCompatActivity
         {
             @Override
             public void onClick(View view) {
+                if(cd.isConnectingToInternet()){
+                    String url= null;
 
+
+
+                    url = Config.get_url+
+                            "action=run_all"
+                    ;
+
+                    updatetokenall = new UpdateTokenall();
+                    updatetokenall.execute(url);
+
+                }else{
+//                                Toast.makeText(HotelAdmin_MenusActivity.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+//                                finish();
+                }
                 // Toast.makeText(getContext(), "Accept", Toast.LENGTH_SHORT).show();
                 isAcceptOrder=true;
                 openPopup();
@@ -607,5 +632,50 @@ public class OrderDetailActivity extends AppCompatActivity
         }
     }
 
+    class UpdateTokenall extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            dialog=new ProgressDialog(CategoriesActivity.this);
+//            dialog.setMessage("Getting trending menus");
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//                @Override
+//                public void onCancel(DialogInterface dialog) {
+//                    getcoupon.cancel(true);
+//                    finish();
+//                }
+//            });
+//            dialog.show();
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            return jsonParser.doGetRequest(params[0]);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //    dialog.dismiss();
+            if(result==null||result.trim().length()<=0){
+                Toast.makeText(OrderDetailActivity.this,"No response from server, Please check your internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
+                JSONObject jsonObject=new JSONObject(result);
+                if(jsonObject.getString("result").equals("true")){
 
+                    Toast.makeText(OrderDetailActivity.this, "Success api call", Toast.LENGTH_SHORT).show();
+
+
+                }
+                else {
+                    Toast.makeText(OrderDetailActivity.this, "not success", Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
